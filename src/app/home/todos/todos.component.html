@@ -2,29 +2,33 @@
     <input type="text" id="todo-input" placeholder="Please enter your new task." [(ngModel)]="newTodo" (keyup.enter)="addTodo()"/>
     <button type="submit" (click)="addTodo()">+</button>
 </div>
-<div class="edit-todo" *ngIf="isEdit">
-    <div class="form-content" [formGroup]="todoContent">
-        <input type="text" formControlName="title" [(ngModel)]="tmpTodo.title">
+<div class="content">
+    <div class="edit-todo" *ngIf="isEdit">
+        <div class="form-content" [formGroup]="todoContent">
+            <input type="text" formControlName="title" [(ngModel)]="tmpTodo.title">
+        </div>
+        <button type="submit" (click)="save()">Save</button>
+        <button type="submit" (click)="cancel()">Cancel</button>
     </div>
-    <button type="submit" (click)="save()">Save</button>
-    <button type="submit" (click)="cancel()">Cancel</button>
-</div>
-<div class="todos">
-    <h2>Todo:</h2>
-  <div class="task" *ngFor="let todo of todosInProcess; let index = index">
-    <input type="checkbox" (click)="handleCompleteItem(todo.id)"/>
-    <div class="title">{{ todo.title }}</div>
-    <button class="edit" (click)="edit(todo.id)">Edit</button>
-    <button class="delete" (click)="delete(todo.id)">Delete</button>
-  </div>
-</div>
-
-<div class="done">
-    <h2>Done:</h2>
-  <div class="task" *ngFor="let todo of todosDone; let index = index">
-    <input type="checkbox" (click)="handleCompleteItem(todo.id)"/>
-    <div class="title">{{ todo.title }}</div>
-    <button class="edit" (click)="edit(todo.id)">Edit</button>
-    <button class="delete" (click)="delete(todo.id)">Delete</button>
-  </div>
+    <div class="todo-area">
+        <div class="todos">
+            <h2>Todo:</h2>
+          <div class="task" *ngFor="let todo of todosInProcess; let index = index">
+            <input type="checkbox" (click)="handleCompleteItem(todo.id)"/>
+            <div class="title">{{ todo.title }}</div>
+            <button class="edit" (click)="edit(todo.id)">Edit</button>
+            <button class="delete" (click)="delete(todo.id)">Delete</button>
+          </div>
+        </div>
+        
+        <div class="done">
+            <h2>Done:</h2>
+          <div class="task" *ngFor="let todo of todosDone; let index = index">
+            <input type="checkbox" (click)="handleCompleteItem(todo.id)"/>
+            <div class="title">{{ todo.title }}</div>
+            <button class="edit" (click)="edit(todo.id)">Edit</button>
+            <button class="delete" (click)="delete(todo.id)">Delete</button>
+          </div>
+        </div>
+    </div>
 </div>
